@@ -23,32 +23,16 @@ los comandos: `make sexton_swinbank`, `make minmax`,
 
 ```
 .
+├── bin
+├── compile_flags.txt
+├── docs
+│   └── Tarea_2_DiseA_o_y_AnA_lisis_de_Algoritmos.pdf
+├── include
+│   └── heap.hpp
 ├── makefile
 ├── README.md
-├── bin
-├── include
-│   ├── busqueda.hpp
-│   ├── ciaccia_patella.hpp
-│   ├── minmax.hpp
-│   ├── sexton_swinbank.hpp
-│   └── tarea.hpp
-├── resultados
-│   ├── accesos_cp.txt
-│   ├── accesos_ss.txt
-│   ├── graficos_intervalos.py
-│   ├── tiempos_cp.txt
-│   └── tiempos_ss.txt
 ├── src
-│   ├── busqueda.cpp
-│   ├── ciaccia_patella.cpp
-│   ├── minmax.cpp
-│   ├── sexton_swinbank.cpp
-│   └── tarea.cpp
+│   └── heap.cpp
 └── test
-    ├── busqueda_test.cpp
-    ├── ciaccia_patella_test.cpp
-    ├── minmax_test.cpp
-    ├── sexton_swinbank_test.cpp
-    ├── tarea_test.cpp
-    └── tarea_test.hpp
+    └── test_heap.cpp
 ```
