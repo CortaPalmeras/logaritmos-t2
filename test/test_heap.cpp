@@ -1,8 +1,8 @@
 
 #include <iostream>
 
-#include "tests.hpp"
 #include "heap.hpp"
+#include "tests.hpp"
 
 using namespace std;
 

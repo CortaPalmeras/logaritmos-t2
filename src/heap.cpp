@@ -2,9 +2,9 @@
 #include <vector>
 
 #include "heap.hpp"
+#include "tarea.hpp"
 
 using namespace std;
-
 
 vector<Par> pares;
 int tamaño = 0;
@@ -56,4 +56,3 @@ Par *Heap::ExtraerMinimo() {
 void Heap::DecreaseKey(Nodo nodo, int nuevaDistancia) {
     nodo.par->distancia = nuevaDistancia;
 }
-

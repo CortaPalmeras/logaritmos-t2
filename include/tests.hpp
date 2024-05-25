@@ -8,4 +8,3 @@ void test_dij_heap();
 void test_dij_fib();
 
 #endif // !TESTS
-
