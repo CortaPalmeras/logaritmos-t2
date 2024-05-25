@@ -1,0 +1,59 @@
+#include <vector>
+
+#include "heap.h"
+
+using namespace std;
+
+typedef struct heap {
+    vector<Par> pares;
+    int tamaño = 0;
+
+    void AgregarPar(int distancia, Nodo *nodo) {
+        Par par = {distancia, nodo};
+        pares.push_back(par);
+        Subir();
+        tamaño++;
+    }
+
+    void Subir() {
+        int j = tamaño;
+        while (j >= 1 && pares[j].distancia < pares[(j - 1) / 2].distancia) {
+            Par par1 = pares[j];
+            Par par2 = pares[(j - 1) / 2];
+            pares[j] = par2;
+            pares[(j - 1) / 2] = par1;
+            j = (j - 1) / 2;
+        }
+    }
+
+    void Bajar() {
+        int j = tamaño;
+        while (2 * j + 1 < tamaño) {
+            int k = 2 * j + 1;
+            if (k + 1 < tamaño && pares[k + 1].distancia < pares[k].distancia) {
+                k++;
+            }
+            if (pares[j].distancia <= pares[k].distancia) {
+                break;
+            }
+            Par par1 = pares[j];
+            Par par2 = pares[k];
+            pares[j] = par1;
+            pares[k] = par2;
+            j = k;
+        }
+    }
+
+    Par *ExtraerMinimo() {
+        Par *minimo = &pares[0];
+        tamaño--;
+        pares[0] = pares[tamaño];
+        Bajar();
+        return minimo;
+    }
+
+    void DecreaseKey(Nodo nodo, int nuevaDistancia) {
+        nodo.par->distancia = nuevaDistancia;
+    }
+
+} Heap;
