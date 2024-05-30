@@ -6,13 +6,13 @@ using namespace std;
 
 
 template <typename cola_prioridad>
-vector<int> dijkstra(int inicio, const vector<vector<pair<int,int>>>& graph) {
-    int n = graph.size();
+vector<int> dijkstra(int inicio, const vector<vector<pair<int,int>>>& grafo) {
+    int n = grafo.size();
     vector<int> dist(n, numeric_limits<int>::max());
-    dist[source] = 0;
+    dist[inicio] = 0;
 
     cola_prioridad pq;
-    pq.push({0, source});
+    pq.push({0, inicio});
 
     while (!pq.empty()) {
         int d = pq.peek_prio();
@@ -22,7 +22,7 @@ vector<int> dijkstra(int inicio, const vector<vector<pair<int,int>>>& graph) {
         if (d > dist[u]) continue;
 
         // Explore all neighbors of vertex u
-        for (const auto& neighbor : graph[u]) {
+        for (const auto& neighbor : grafo[u]) {
             int v = neighbor.first;
             int weight = neighbor.second;
 

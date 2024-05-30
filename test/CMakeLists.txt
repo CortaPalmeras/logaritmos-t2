@@ -1,10 +1,12 @@
 
+# Añadir archivos de tests aquí
+# solo puede haber un main
 add_executable(
-    prueba_cmake
-    prueba_cmake.cpp
+    tarea_test
+    test_heap.cpp
 )
 
 target_link_libraries(
-    prueba_cmake
-    prueba_lib
+    tarea_test
+    tarea
 )

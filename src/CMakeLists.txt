@@ -1,10 +1,17 @@
 
+# Añadir codigo fuente aquí,
+# no puede haber un main.
 add_library(
-    prueba_lib
-    prueba_lib.cpp
+    tarea
+    arbol_binomial.cpp
+    dijkstra.cpp
+    fibonacci.cpp
+    heap.cpp
+    tarea.cpp
 )
 
 target_include_directories(
-    prueba_lib
-    INTERFACE ${PROJECT_SOURCE_DIR}/include
+    tarea
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
+
