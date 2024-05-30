@@ -6,7 +6,7 @@ using namespace std;
 
 
 template <typename cola_prioridad>
-vector<int> dijkstra(int source, const vector<vector<pair<int,int>>>& graph) {
+vector<int> dijkstra() {
     int n = graph.size();
     vector<int> dist(n, numeric_limits<int>::max());
     dist[source] = 0;
