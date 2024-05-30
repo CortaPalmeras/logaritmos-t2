@@ -7,11 +7,12 @@
 using namespace std;
 
 class ArbolBinomial {
+    public:
+
     int orden;
     Par raiz;
     vector<ArbolBinomial> arboles;
 
-    public:
 
     ArbolBinomial *crearArbol(int orden, vector<Par> pares) {
 

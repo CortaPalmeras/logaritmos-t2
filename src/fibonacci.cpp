@@ -39,29 +39,43 @@ class ColaFibonacci{
             arboles.push_back(arbolMinimo[i]);
             tamaño++;
         }
-        ArbolBinomial *punteros[log2_ceil(tamaño)]={nullptr};
+        int tamañoPunteros=log2_ceil(tamaño);
+        ArbolBinomial *punteros[tamañoPunteros]={nullptr};
         for(int k=0;k<tamaño;k++){
-            if(punteros[arboles[k].orden]=nullptr){
-                punteros[arboles[k].orden]=arboles[k];
-            }
-            else{
-                if(arboles[k].raiz.distancia>punteros[arboles[k].orden]){
-                    arboles[k].arboles.push_back(punteros[arboles[k].orden]);
-                }
-                else{
-                    punteros[arboles[k].orden].arboles.push_back(arboles[k])
-
-                }
+            funcion(punteros,arbol[k]);
+        }
+        vector<ArbolBinomial> nuevosArboles[tamañoPunteros];
+        minimo=punteros[0];
+        for(int i=0;i<tamañoPunteros;i++){
+            nuevosArboles[i]=punteros[i];
+            if(minimo.raiz.distancia>punteros[i].raiz.distancia){
+                minimo=punteros[i];
             }
         }
-
-
-
+        arboles=nuevosArboles;
         return resultado;
     }
 
 };
 
-void funcion(ArbolBinomial *punteros, ArbolBinomial arboles){
-    
+void funcion(ArbolBinomial *punteros, ArbolBinomial arbol){
+    if(punteros[arbol.orden]==nullptr){
+        punteros[arbol.orden]=arbol;
+    }
+    else{
+        ArbolBinomial arbol1=punteros[arbol.orden];
+        ArbolBinomial arbol2=arbol;
+        if(arbol1.raiz.distancia<arbol2.raiz.distancia){
+            arbol1.arboles.push_back(arbol2);
+            punteros[arbol.orden]=nullptr;
+            arbol1.orden++;
+            funcion(punteros,arbol1);
+        }
+        else{
+            arbol2.arboles.push_back(arbol1);
+            punteros[arbol.orden]=nullptr;
+            arbol2.orden++;
+            funcion(punteros,arbol2);
+        }
+    }
 }
