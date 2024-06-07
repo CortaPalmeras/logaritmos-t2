@@ -10,14 +10,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR
     CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    add_compile_options(-Wall -Wextra -Werror -pedantic)
+    add_compile_options( "-Wall" "-Wextra" "-Werror" "-Wpedantic" )
 
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    add_compile_options(/W4 /WX)
+    add_compile_options( "/W4" "/WX" )
 
 endif()
-
-enable_testing()
 
 add_subdirectory(src)
 add_subdirectory(test)

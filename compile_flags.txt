@@ -1,6 +1,0 @@
--Iinclude
--fsanitize=address
--Wall
--Wextra
--Werror
--O3
