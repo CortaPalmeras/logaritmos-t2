@@ -1,81 +1,84 @@
-
+#include "tarea.hpp"
+#include "arbol_binomial.cpp"
+#include <limits>
 #include <cmath>
 
-#include "nodo_fibonacci.hpp"
 
-namespace logs {
 
-template <typename llave_t, typename valor_t>
-class ColaFibonacci {
+int log2_ceil(int x) {
+    return static_cast<int>(ceil(log2(x)));
+}
 
-    NodoFibonacci<llave_t, valor_t> *minimo;
-    int hayArboles = 0;
-
-    void AgregarPar(llave_t llave, valor_t valor) {
-        NodoFibonacci<llave_t, valor_t> *arbol = new NodoFibonacci(llave, valor);
-        if (hayArboles == 0) {
-            minimo = arbol;
+class ColaFibonacci{
+    vector <ArbolBinomial>arboles;
+    ArbolBinomial minimo;
+    int hayArboles=0;
+    void AgregarPar(int distancia, Nodo *nodo){
+        Par par;
+        par.distancia=distancia;
+        par.nodo=nodo;
+        ArbolBinomial arbol;
+        arbol.orden=0;
+        arbol.raiz=par;
+        if(hayArboles==0){
+            minimo=arbol;
             hayArboles++;
-        } else if (parMinimo.distancia > distancia) {
-            minimo = arbol;
+        }
+        else if(minimo.raiz.distancia>distancia){
+            minimo=arbol;
         }
     }
-
-    Par *ExtraerMinimo() {
-        NodoFibonacci<llave_t, valor_t> arbolMinimo = minimo;
-        Par *resultado = arbolMinimo.raiz;
+    Par *ExtraerMinimo(){
+        ArbolBinomial arbolMinimo=minimo;
+        Par *resultado=&arbolMinimo.raiz;
         auto it = find(arboles.begin(), arboles.end(), arbolMinimo);
         arboles.erase(it);
-        int tamaño = arbolMinimo.arboles.size();
+        int tamaño=arbolMinimo.arboles.size();
 
-        for (int i = 0; i < tamaño; i++) {
-            arboles.push_back(arbolMinimo[i]);
-            tamaño++;
+        for(int i=0;i<tamaño;i++){
+            arboles.push_back(arbolMinimo.arboles[i]);
+            // tamaño++;
         }
-        int tamañoPunteros = log2_ceil(tamaño);
-        NodoFibonacci<llave_t, valor_t> *punteros[tamañoPunteros] = {nullptr};
-        for (int k = 0; k < tamaño; k++) {
-            funcion(punteros, arbol[k]);
+
+        int tamañoPunteros=log2_ceil(arboles.size());
+        ArbolBinomial *punteros[tamañoPunteros]={nullptr};
+        for(int k=0;k<arboles.size();k++){
+            funcion(punteros,arboles[k]);
         }
-        vector<NodoFibonacci<llave_t, valor_t>> nuevosArboles[tamañoPunteros];
-        minimo = punteros[0];
-        for (int i = 0; i < tamañoPunteros; i++) {
-            nuevosArboles[i] = punteros[i];
-            if (minimo.raiz.distancia > punteros[i].raiz.distancia) {
-                minimo = punteros[i];
+        arboles.clear();
+        ArbolBinomial nuevo_minimo;
+        nuevo_minimo.raiz.distancia=numeric_limits<int>::max();
+        for(int i=0;i<tamañoPunteros;i++){
+            arboles.push_back(*punteros[i]);
+            if(arboles[i].raiz.distancia<nuevo_minimo.raiz.distancia){
+                nuevo_minimo=arboles[i];
             }
         }
-        arboles = nuevosArboles;
+        minimo=nuevo_minimo;
         return resultado;
+    }
+    void DecreaseKey(Nodo nodo, int nuevaDistancia){
+        nodo.par->distancia=nuevaDistancia;
     }
 };
 
-template <typename llave_t, typename valor_t>
-void funcion(NodoFibonacci<llave_t, valor_t> *punteros, NodoFibonacci<llave_t, valor_t> arbol) {
-    if (punteros[arbol.orden] == nullptr) {
-        punteros[arbol.orden] = arbol;
-    } else {
-        NodoFibonacci<llave_t, valor_t> arbol1 = punteros[arbol.orden];
-        NodoFibonacci<llave_t, valor_t> arbol2 = arbol;
-        if (arbol1.raiz.distancia < arbol2.raiz.distancia) {
+void funcion(ArbolBinomial **punteros, ArbolBinomial arbol){
+    if(punteros[arbol.orden]==nullptr){
+        punteros[arbol.orden]=&arbol;
+    }
+    else{
+        ArbolBinomial arbol1=*punteros[arbol.orden];
+        ArbolBinomial arbol2=arbol;
+        punteros[arbol.orden]=nullptr;
+        if(arbol1.raiz.distancia<arbol2.raiz.distancia){
             arbol1.arboles.push_back(arbol2);
-            punteros[arbol.orden] = nullptr;
             arbol1.orden++;
-            funcion(punteros, arbol1);
-        } else {
+            funcion(punteros,arbol1);
+        }
+        else{
             arbol2.arboles.push_back(arbol1);
-            punteros[arbol.orden] = nullptr;
             arbol2.orden++;
-            funcion(punteros, arbol2);
+            funcion(punteros,arbol2);
         }
     }
 }
-
-typedef struct {
-    double x;
-    double y;
-} punto;
-
-template ColaFibonacci<double, *punto>
-
-} // namespace logs
