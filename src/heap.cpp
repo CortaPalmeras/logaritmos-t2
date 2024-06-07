@@ -4,9 +4,9 @@
 #include "heap.hpp"
 #include "tarea.hpp"
 
-using namespace std;
+namespace logs {
 
-vector<Par> pares;
+std::vector<Par> pares;
 int tamaño = 0;
 
 void Heap::AgregarPar(int distancia, Nodo *nodo) {
@@ -56,3 +56,6 @@ Par *Heap::ExtraerMinimo() {
 void Heap::DecreaseKey(Nodo nodo, int nuevaDistancia) {
     nodo.par->distancia = nuevaDistancia;
 }
+
+} // namespace logs
+

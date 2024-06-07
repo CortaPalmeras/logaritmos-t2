@@ -1,12 +1,12 @@
 #include <limits>
 #include <vector>
 
-using namespace std;
+using std::vector;
 
 template <typename cola_prioridad>
-vector<int> dijkstra(int inicio, const vector<vector<pair<int, int>>> &grafo) {
+vector<int> dijkstra(int inicio, const vector<vector<std::pair<int, int>>> &grafo) {
     int n = grafo.size();
-    vector<int> dist(n, numeric_limits<int>::max());
+    vector<int> dist(n, std::numeric_limits<int>::max());
     dist[inicio] = 0;
 
     cola_prioridad pq;

@@ -1,9 +1,11 @@
-#ifndef HEAP
-#define HEAP
+#ifndef HEAP_HPP
+#define HEAP_HPP
 
 #include <vector>
 
 #include "tarea.hpp"
+
+namespace logs {
 
 class Heap {
     private:
@@ -22,4 +24,6 @@ class Heap {
     void DecreaseKey(Nodo nodo, int nuevaDistancia);
 };
 
-#endif // !HEAP
+} // namespace logs
+
+#endif // !HEAP_HPP

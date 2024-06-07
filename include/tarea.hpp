@@ -1,5 +1,7 @@
-#ifndef TAREA
-#define TAREA
+#ifndef TAREA_HPP
+#define TAREA_HPP
+
+namespace logs {
 
 struct nodo;
 struct arista;
@@ -20,4 +22,6 @@ typedef struct par {
     Nodo *nodo;
 } Par;
 
-#endif // !TAREA
+} // namespace logs
+
+#endif // !TAREA_HPP
