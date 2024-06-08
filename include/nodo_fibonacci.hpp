@@ -9,8 +9,7 @@ namespace logs {
 
 template <typename llave_t, typename valor_t>
 class NodoFibonacci {
-public:
-
+    public:
     NodoFibonacci<llave_t, valor_t>(llave_t llave, valor_t valor) : _hijos(0) {
         _llave = llave;
         _valor = valor;
@@ -62,8 +61,7 @@ public:
         return this;
     }
 
-private:
-
+    private:
     llave_t _llave;
     valor_t _valor;
     bool _marcado;
@@ -103,8 +101,6 @@ private:
         hijo->_padre = this;
         _hijos.push_back(hijo);
     }
-
- 
 };
 
 } // namespace logs

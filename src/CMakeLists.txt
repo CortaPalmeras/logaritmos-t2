@@ -3,11 +3,11 @@
 # no puede haber un main.
 add_library(
     tarea
-    arbol_binomial.cpp
-    dijkstra.cpp
-    fibonacci.cpp
-    heap.cpp
     tarea.cpp
+    heap.cpp
+    cola_fibonacci.cpp
+    cola_fibonacci_nodo.cpp
+    dijkstra.cpp
 )
 
 target_include_directories(

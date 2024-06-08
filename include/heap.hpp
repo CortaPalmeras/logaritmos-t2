@@ -3,12 +3,28 @@
 
 #include <vector>
 
-#include "tarea.hpp"
-
 namespace logs {
 
 class Heap {
     private:
+
+    struct par;
+
+    typedef struct nodo {
+        struct par *par;
+    } Nodo;
+
+    typedef struct arista {
+        par* nodo1;
+        par* nodo2;
+        int peso;
+    } Arista;
+
+    typedef struct par {
+        int distancia;
+        par *nodo;
+    } Par;
+
     std::vector<Par> pares;
     int tamaño = 0;
 
