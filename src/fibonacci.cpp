@@ -10,7 +10,7 @@ int log2_ceil(int x) {
     return static_cast<int>(ceil(log2(x)));
 }
 
-void funcion(ArbolBinomial **punteros, ArbolBinomial arbol){
+void ඞ(ArbolBinomial **punteros, ArbolBinomial arbol){
     if(punteros[arbol.orden]==nullptr){
         punteros[arbol.orden]=&arbol;
     }
