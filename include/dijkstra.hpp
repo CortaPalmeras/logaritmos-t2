@@ -1,17 +1,15 @@
 #ifndef DIJKSTRA_HPP
 #define DIJKSTRA_HPP
 
-
+#include <utility>
 #include <vector>
+
 namespace logs {
 
-template <typename peso_t>
-class Nodo {
-    std::vector<std::pair<Nodo*, peso_t>> siguientes;
-};
+using std::vector, std::pair;
 
 template <typename peso_t>
-void dijkstra(Nodo<peso_t>* raiz);
+void dijkstra(int raiz, vector<vector<pair<int, peso_t>>> const &grafo);
 
 } // namespace logs
 

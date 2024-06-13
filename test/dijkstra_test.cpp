@@ -1,10 +1,10 @@
 
 #include <iostream>
 
-#include "heap.hpp"
+#include "dijkstra.hpp"
 
-void heap_test() {
-    std::cout << "Tests para heap: ";
+void dijkstra_test() {
+    std::cout << "Tests para algoritmo de dijkstra: ";
 
     std::cout << "\033[33m" << "No hay tests" << "\033[0m" << std::endl;
 

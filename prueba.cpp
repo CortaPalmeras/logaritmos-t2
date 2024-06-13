@@ -60,6 +60,10 @@ public:
     outer(int puv, int prv) : pr(prv), pu(puv) {}
 };
 
+void llenar_vector(std::vector<int> v) {
+    v = std::vector(1000, 8);
+}
+
 int main(void) {
     outer *o = new outer(3, 5);
 
@@ -84,15 +88,6 @@ int main(void) {
     // esto no se puede hacer porque outer::privinner es una clase privada
     // std::vector<outer::privinner> vpriv(5);
 
-    int *p0 = nullptr;
-    int i1 = 2;
-    int *p1 = &i1;
-    int i2 = 5;
-    int *p2 = &i2;
-
-    if ((p0 | p1 | p2) == nullptr) {
-        std::cout << "1"
-    }
 
     return 0;
 }

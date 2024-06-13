@@ -1,3 +1,5 @@
+#ifndef COLA_FIBONACCI_IMPL_HPP
+#define COLA_FIBONACCI_IMPL_HPP
 
 #include <cmath>
 #include <stdexcept>
@@ -11,12 +13,12 @@ template <typename l, typename v>
 ColaFibonacci<l, v>::ColaFibonacci() : _minimo(nullptr), _tamano(0) {}
 
 template <typename l, typename v>
-typename ColaFibonacci<l, v>::Nodo* ColaFibonacci<l, v>::agregar_par(l llave, v valor) {
-    Nodo* nuevo_nodo = new Nodo(llave, valor);
+typename ColaFibonacci<l, v>::Nodo *ColaFibonacci<l, v>::agregar_par(l llave, v valor) {
+    Nodo *nuevo_nodo = new Nodo(llave, valor);
     _tamano++;
 
     if (_minimo != nullptr) {
-        Nodo* siguiente = _minimo->_hermano_d;
+        Nodo *siguiente = _minimo->_hermano_d;
 
         nuevo_nodo->_hermano_i = _minimo;
         nuevo_nodo->_hermano_d = siguiente;
@@ -36,7 +38,7 @@ typename ColaFibonacci<l, v>::Nodo* ColaFibonacci<l, v>::agregar_par(l llave, v 
 }
 
 template <typename l, typename v>
-void ColaFibonacci<l, v>::reducir_llave(Nodo* nodo, l nueva_llave) {
+void ColaFibonacci<l, v>::reducir_llave(Nodo *nodo, l nueva_llave) {
     if (nodo->_llave < nueva_llave) {
         throw std::logic_error("La nueva llave es mayor que la actual");
     }
@@ -53,10 +55,10 @@ void ColaFibonacci<l, v>::reducir_llave(Nodo* nodo, l nueva_llave) {
 }
 
 template <typename l, typename v>
-void ColaFibonacci<l,v>::mover_a_raiz(Nodo* nodo) {
-    Nodo* antiguo_padre = nodo->_padre;
-    Nodo* antiguo_hermano_d = nodo->_hermano_d;
-    Nodo* antiguo_hermano_i = nodo->_hermano_i;
+void ColaFibonacci<l, v>::mover_a_raiz(Nodo *nodo) {
+    Nodo *antiguo_padre = nodo->_padre;
+    Nodo *antiguo_hermano_d = nodo->_hermano_d;
+    Nodo *antiguo_hermano_i = nodo->_hermano_i;
 
     // se quita al nodo de la lista a la que pertenece
     if (antiguo_hermano_d != nodo) {
@@ -69,8 +71,8 @@ void ColaFibonacci<l,v>::mover_a_raiz(Nodo* nodo) {
         antiguo_padre->_hijo = nullptr;
     }
 
-    Nodo* nuevo_hermano_d = _minimo->_hermano_d;
-    
+    Nodo *nuevo_hermano_d = _minimo->_hermano_d;
+
     // se añaden los nuevos hermanos al nodo
     nodo->_hermano_d = nuevo_hermano_d;
     nodo->_hermano_i = _minimo;
@@ -99,13 +101,13 @@ v ColaFibonacci<l, v>::extraer_minimo() {
         throw std::logic_error("No se puede extraer minimo de cola vacía");
     }
 
-    Nodo* nodo_minimo = _minimo;
-    Nodo* m_hijo = _minimo->_hijo;
-    Nodo* m_hermano_d = _minimo->_hermano_d;
-    Nodo* m_hermano_i = _minimo->_hermano_i;
+    Nodo *nodo_minimo = _minimo;
+    Nodo *m_hijo = _minimo->_hijo;
+    Nodo *m_hermano_d = _minimo->_hermano_d;
+    Nodo *m_hermano_i = _minimo->_hermano_i;
 
     v ret = nodo_minimo->_valor;
-    
+
     // esta parte solo se encarga de eliminar el nodo y añadir a sus hijos al heap
     if (m_hijo == nullptr) {
         // si el minimo no tiene hijos simplemente se quita de la lista
@@ -124,14 +126,14 @@ v ColaFibonacci<l, v>::extraer_minimo() {
         m_hijo->_padre = nullptr;
         m_hijo->_marcado = false;
 
-        for (Nodo* iter = m_hijo->_hermano_d; iter != m_hijo; iter = iter->_hermano_d) {
+        for (Nodo *iter = m_hijo->_hermano_d; iter != m_hijo; iter = iter->_hermano_d) {
             iter->_padre = nullptr;
             iter->_marcado = false;
         }
 
         // si ademas tiene hermanos se concatena la lista de hijos con la de hermanos
         if (_minimo != m_hermano_d) {
-            Nodo* m_ultimo_hijo = m_hijo->_hermano_i;
+            Nodo *m_ultimo_hijo = m_hijo->_hermano_i;
 
             m_hermano_d->_hermano_i = m_ultimo_hijo;
             m_hermano_i->_hermano_d = m_hijo;
@@ -154,20 +156,20 @@ v ColaFibonacci<l, v>::extraer_minimo() {
 }
 
 unsigned int log2_ceil(unsigned int n) {
-    return static_cast<unsigned int>(std::ceil(std::log2(n))) + 1 ;
+    return static_cast<unsigned int>(std::ceil(std::log2(n))) + 1;
 }
 
 template <typename l, typename v>
 void ColaFibonacci<l, v>::consolidar() {
-    std::vector<Nodo*> lista_auxiliar(log2_ceil(_tamano), nullptr);
+    std::vector<Nodo *> lista_auxiliar(log2_ceil(_tamano), nullptr);
     lista_auxiliar[_minimo->_orden] = _minimo;
 
-    Nodo* init = _minimo;
-    Nodo* iter = _minimo->_hermano_d;
-    Nodo* next = iter->_hermano_d;
+    Nodo *init = _minimo;
+    Nodo *iter = _minimo->_hermano_d;
+    Nodo *next = iter->_hermano_d;
     while (iter != init) {
-        while (lista_auxiliar[iter->_orden] != nullptr) {   
-            Nodo* otro = lista_auxiliar[iter->_orden];
+        while (lista_auxiliar[iter->_orden] != nullptr) {
+            Nodo *otro = lista_auxiliar[iter->_orden];
             lista_auxiliar[iter->_orden] = nullptr;
 
             if (otro->_llave < iter->_llave) {
@@ -178,7 +180,7 @@ void ColaFibonacci<l, v>::consolidar() {
             }
         }
 
-        if (iter->_llave < _minimo ->_llave) {
+        if (iter->_llave < _minimo->_llave) {
             _minimo = iter;
         }
 
@@ -193,10 +195,10 @@ void ColaFibonacci<l, v>::consolidar() {
     lista_auxiliar[_minimo->_orden] = nullptr;
 
     for (unsigned int i = 0; i < lista_auxiliar.size(); i++) {
-        Nodo* otro = lista_auxiliar[i];
+        Nodo *otro = lista_auxiliar[i];
 
         if (otro != nullptr) {
-            Nodo* m_hermano_i = _minimo->_hermano_i;
+            Nodo *m_hermano_i = _minimo->_hermano_i;
 
             otro->_hermano_d = _minimo;
             otro->_hermano_i = m_hermano_i;
@@ -217,10 +219,15 @@ v ColaFibonacci<l, v>::valor_menor() const {
 }
 
 template <typename l, typename v>
-ColaFibonacci<l, v>::Nodo::Nodo(l llave, v valor)
-    : _llave(llave), _valor(valor), _marcado(false), _orden(0),
-    _padre(nullptr), _hijo(nullptr), _hermano_i(this), _hermano_d(this) {}
+bool ColaFibonacci<l, v>::vacio() const {
+    return _minimo == nullptr;
+}
 
+
+template <typename l, typename v>
+ColaFibonacci<l, v>::Nodo::Nodo(l llave, v valor)
+    : _llave(llave), _valor(valor), _marcado(false), _orden(0), _padre(nullptr), _hijo(nullptr),
+      _hermano_i(this), _hermano_d(this) {}
 
 template <typename l, typename v>
 l ColaFibonacci<l, v>::Nodo::llave() {
@@ -233,14 +240,14 @@ v ColaFibonacci<l, v>::Nodo::valor() {
 }
 
 template <typename l, typename v>
-void ColaFibonacci<l, v>::Nodo::anadir_hijo(Nodo* nuevo_hijo) {
+void ColaFibonacci<l, v>::Nodo::anadir_hijo(Nodo *nuevo_hijo) {
     if (_hijo == nullptr) {
         nuevo_hijo->_hermano_d = nuevo_hijo;
         nuevo_hijo->_hermano_i = nuevo_hijo;
         _hijo = nuevo_hijo;
 
     } else {
-        Nodo* h_hermano_i = _hijo->_hermano_i;
+        Nodo *h_hermano_i = _hijo->_hermano_i;
 
         nuevo_hijo->_hermano_d = _hijo;
         nuevo_hijo->_hermano_i = h_hermano_i;
@@ -252,6 +259,6 @@ void ColaFibonacci<l, v>::Nodo::anadir_hijo(Nodo* nuevo_hijo) {
     _orden++;
 }
 
-template class ColaFibonacci<double, int>;
-
 } // namespace logs
+
+#endif // !COLA_FIBONACCI_IMPL_HPP

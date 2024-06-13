@@ -1,15 +1,19 @@
 
-# Añadir archivos de tests aquí
-# solo puede haber un main
 add_executable(
     tarea_test
     tarea_test.cpp
     cola_fibonacci_test.cpp
     heap_test.cpp
+    dijkstra_test.cpp
 )
 
-target_link_libraries(
+# target_link_libraries(
+#     tarea_test
+#     tarea
+# )
+
+target_include_directories(
     tarea_test
-    tarea
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
 
