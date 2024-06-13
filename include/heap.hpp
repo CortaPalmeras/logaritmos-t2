@@ -6,8 +6,7 @@
 namespace logs {
 
 class Heap {
-    private:
-
+private:
     struct par;
 
     typedef struct nodo {
@@ -15,8 +14,8 @@ class Heap {
     } Nodo;
 
     typedef struct arista {
-        par* nodo1;
-        par* nodo2;
+        par *nodo1;
+        par *nodo2;
         int peso;
     } Arista;
 
@@ -28,7 +27,7 @@ class Heap {
     std::vector<Par> pares;
     int tamaño = 0;
 
-    public:
+public:
     void AgregarPar(int distancia, Nodo *nodo);
 
     void Subir();

@@ -1,8 +1,8 @@
 #ifndef ESTRUCTURAQ_H
 #define ESTRUCTURAQ_H
 
+#include "tarea.hpp"
 #include <utility>
-#include "tarea.hpp"  
 
 class estructuraQ {
 public:

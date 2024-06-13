@@ -1,7 +1,17 @@
+
 #include <limits>
 #include <vector>
 
-using std::vector;
+namespace logs {
+
+template <typename peso_t>
+class Nodo {
+    std::vector<std::pair<Nodo*, peso_t>> siguientes;
+};
+
+template <typename peso_t>
+void dijkstra(Nodo<peso_t>* raiz) {
+}
 
 template <typename cola_prioridad>
 vector<int> dijkstra(int inicio, const vector<vector<std::pair<int, int>>> &grafo) {
@@ -29,6 +39,7 @@ vector<int> dijkstra(int inicio, const vector<vector<std::pair<int, int>>> &graf
             }
         }
     }
-
     return dist;
 }
+
+} // namespace logs
