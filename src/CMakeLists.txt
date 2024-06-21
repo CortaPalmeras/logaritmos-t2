@@ -1,6 +1,8 @@
 
 add_library(
-    tarea
+    tarea STATIC
+    dijkstra.cpp
+    cola_fibonacci.cpp
 )
 
 target_include_directories(

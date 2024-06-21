@@ -7,10 +7,10 @@ add_executable(
     dijkstra_test.cpp
 )
 
-# target_link_libraries(
-#     tarea_test
-#     tarea
-# )
+target_link_libraries(
+    tarea_test
+    tarea
+)
 
 target_include_directories(
     tarea_test

@@ -7,8 +7,8 @@
 
 #include "cola_fibonacci.hpp"
 
-bool comparar_nodo(logs::ColaFibonacci<double, int>::Nodo *a,
-                   logs::ColaFibonacci<double, int>::Nodo *b) {
+bool comparar_nodo(ColaFibonacci<double, int>::Nodo* a,
+                   ColaFibonacci<double, int>::Nodo* b) {
     return a->llave() < b->llave();
 }
 
@@ -20,21 +20,21 @@ void cola_fibonacci_test() {
     std::uniform_int_distribution<int> dist_valor(-10, 10);
     std::uniform_real_distribution<double> dist_decimal(0, 1);
 
-    logs::ColaFibonacci<double, int> cola;
-    std::vector<logs::ColaFibonacci<double, int>::Nodo *> nodos;
+    ColaFibonacci<double, int> cola;
+    std::vector<ColaFibonacci<double, int>::Nodo*> nodos;
     std::vector<std::pair<double, int>> comparacion;
 
     for (unsigned int i = 0; i < 10000; i++) {
         double llave = dist_llave(rng);
         int valor = dist_valor(rng);
-        nodos.push_back(cola.agregar_par(llave, valor));
+        nodos.push_back(cola.agregarPar(llave, valor));
         comparacion.emplace_back(llave, valor);
     }
 
     for (unsigned int i = 0; i < nodos.size(); i += 5) {
         double nueva_llave =
             dist_decimal(rng) * (nodos[i]->llave() - dist_llave.a()) + dist_llave.a();
-        cola.reducir_llave(nodos[i], nueva_llave);
+        cola.reducirLlave(nodos[i], nueva_llave);
         comparacion[i].first = nueva_llave;
     }
 
@@ -44,9 +44,9 @@ void cola_fibonacci_test() {
     for (unsigned int i = 0; i < nodos.size() / 2; i++) {
         assert(comparacion[i].first == nodos[i]->llave());
         assert(comparacion[i].second == nodos[i]->valor());
-        assert(comparacion[i].first == cola.llave_menor());
-        assert(comparacion[i].second == cola.valor_menor());
-        assert(comparacion[i].second == cola.extraer_minimo());
+        assert(comparacion[i].first == cola.llaveMenor());
+        assert(comparacion[i].second == cola.valorMenor());
+        assert(comparacion[i].second == cola.extraerMinimo());
     }
 
     nodos.erase(nodos.begin(), nodos.begin() + (nodos.size() / 2));
@@ -55,12 +55,12 @@ void cola_fibonacci_test() {
     for (unsigned int i = 0; i < comparacion.size(); i += 4) {
         double llave = dist_llave(rng);
         int valor = dist_valor(rng);
-        nodos.push_back(cola.agregar_par(llave, valor));
+        nodos.push_back(cola.agregarPar(llave, valor));
         comparacion.emplace_back(llave, valor);
 
         double nueva_llave =
             dist_decimal(rng) * (nodos[i]->llave() - dist_llave.a()) + dist_llave.a();
-        cola.reducir_llave(nodos[i], nueva_llave);
+        cola.reducirLlave(nodos[i], nueva_llave);
         comparacion[i].first = nueva_llave;
     }
 
@@ -70,10 +70,11 @@ void cola_fibonacci_test() {
     for (unsigned int i = 0; i < nodos.size(); i++) {
         assert(comparacion[i].first == nodos[i]->llave());
         assert(comparacion[i].second == nodos[i]->valor());
-        assert(comparacion[i].first == cola.llave_menor());
-        assert(comparacion[i].second == cola.valor_menor());
-        assert(comparacion[i].second == cola.extraer_minimo());
+        assert(comparacion[i].first == cola.llaveMenor());
+        assert(comparacion[i].second == cola.valorMenor());
+        assert(comparacion[i].second == cola.extraerMinimo());
     }
 
     std::cout << "\033[32m" << "Pasados" << "\033[0m" << std::endl;
 }
+

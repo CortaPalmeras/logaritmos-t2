@@ -18,8 +18,8 @@ private:
 
     class privref {
     private:
-        privinner *ptr;
-        privref(privinner *p) : ptr(p) {}
+        privinner* ptr;
+        privref(privinner* p) : ptr(p) {}
         privref() = delete;
         friend outer;
     };
@@ -41,11 +41,11 @@ public:
 
     pubinner pu;
 
-    privinner *getpr() {
+    privinner* getpr() {
         return &pr;
     }
 
-    pubinner *getpu() {
+    pubinner* getpu() {
         return &pu;
     }
 
@@ -65,7 +65,7 @@ void llenar_vector(std::vector<int> v) {
 }
 
 int main(void) {
-    outer *o = new outer(3, 5);
+    outer* o = new outer(3, 5);
 
     // esto se puede hacer
     o->getpu()->print();
@@ -87,7 +87,6 @@ int main(void) {
 
     // esto no se puede hacer porque outer::privinner es una clase privada
     // std::vector<outer::privinner> vpriv(5);
-
 
     return 0;
 }

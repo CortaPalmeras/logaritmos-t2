@@ -2,14 +2,11 @@
 #include <vector>
 
 #include "heap.hpp"
-#include "tarea.hpp"
-
-namespace logs {
 
 std::vector<Par> pares;
 int tamaño = 0;
 
-void Heap::AgregarPar(int distancia, Nodo *nodo) {
+void Heap::AgregarPar(int distancia, Nodo* nodo) {
     Par par = {distancia, nodo};
     pares.push_back(par);
     Subir();
@@ -45,8 +42,8 @@ void Heap::Bajar() {
     }
 }
 
-Par *Heap::ExtraerMinimo() {
-    Par *minimo = &pares[0];
+Par* Heap::ExtraerMinimo() {
+    Par* minimo = &pares[0];
     tamaño--;
     pares[0] = pares[tamaño];
     Bajar();
@@ -57,4 +54,3 @@ void Heap::DecreaseKey(Nodo nodo, int nuevaDistancia) {
     nodo.par->distancia = nuevaDistancia;
 }
 
-} // namespace logs

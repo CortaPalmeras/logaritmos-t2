@@ -4,13 +4,13 @@
 #include <utility>
 #include <vector>
 
-namespace logs {
+typedef std::vector<std::vector<std::pair<int, double>>> Grafo;
 
-using std::vector, std::pair;
+void dijkstra_fibonacci(int raiz, const Grafo& grafo, std::vector<int>& previo,
+                        std::vector<double>& distancias);
 
-template <typename peso_t>
-void dijkstra(int raiz, vector<vector<pair<int, peso_t>>> const &grafo);
+void unir_nodos(Grafo& grafo, int nodo1, int nodo2, double peso);
 
-} // namespace logs
+Grafo crear_grafo(int i, int j);
 
 #endif // !DIJKSTRA_HPP
