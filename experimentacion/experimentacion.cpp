@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(void) {
-    fstream archivo("dijkstra.csv");
+    ofstream archivo("dijkstra.csv");
 
     archivo << "cantidad_nodos,cantidad_aristas,t_con_fib,t_con_heap" << endl;
 
@@ -32,12 +32,11 @@ int main(void) {
                 distancias.clear();
 
                 ini = chrono::high_resolution_clock::now();
-                dijkstra_heap(0, grafo, previo, distancias);
-                 std::chrono::high_resolution_clock::now();
+                /*dijkstra_heap(0, grafo, previo, distancias);*/
+                fin = std::chrono::high_resolution_clock::now();
 
                 dif = fin - ini;
                 archivo << dif.count() << endl;
-                
             }
         }
     }

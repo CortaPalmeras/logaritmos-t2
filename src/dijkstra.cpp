@@ -5,17 +5,15 @@
 
 #include "dijkstra.hpp"
 #include "cola_fibonacci.hpp"
-#include "heap.hpp"
 
 using std::vector;
 
-template <typename Cola>
-void dijkstra(unsigned int raiz, const Grafo& grafo, vector<int>& previo,
+void dijkstra_fibonacci(unsigned int raiz, const Grafo& grafo, vector<int>& previo,
                         vector<double>& distancias) {
     unsigned int n = grafo.size();
 
     // paso 2
-    Cola cola;
+    ColaFibonacci<double, unsigned int> cola;
 
     // paso 3 y 4
     previo.assign(n, -1);
@@ -23,7 +21,7 @@ void dijkstra(unsigned int raiz, const Grafo& grafo, vector<int>& previo,
     distancias[raiz] = 0;
 
     // paso 5
-    vector<Cola::Nodo*> nodos;
+    vector<ColaFibonacci<double, unsigned int>::Nodo*> nodos;
     vector<bool> extraido(n, false);
     nodos.reserve(n);
 
@@ -50,9 +48,6 @@ void dijkstra(unsigned int raiz, const Grafo& grafo, vector<int>& previo,
     }
 }
 
-template void dijkstra<ColaFibonacci<double, unsigned int>>(unsigned int raiz, const Grafo& grafo,
-                                                            vector<int>& previo,
-                                                            vector<double>& distancias);
 
 std::default_random_engine rng(59);
 
