@@ -95,17 +95,19 @@ void Heap<l, v>::bajar(unsigned int indice) {
 }
 
 template <typename l, typename v>
-v Heap<l, v>::extraerMinimo() {}
-
-Par* Heap::ExtraerMinimo() {
-    Par* minimo = &pares[0];
-    tamaño--;
-    pares[0] = pares[tamaño];
-    Bajar();
-    return minimo;
+v Heap<l, v>::extraerMinimo() {
+    v ret = heap[0]->_valor;
+    delete heap[0];
+    _heap[0] = _heap[_heap.size() - 1];
+    _heap.erase(_heap.end() - 1);
+    bajar(0);
+    return ret;
 }
 
 template <typename l, typename v>
-void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {}
+void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {
+    nodo->_llave = llave;
+    bajar(nodo->_pos);
+}
 
 template class Heap<double, int>;
