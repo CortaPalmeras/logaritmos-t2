@@ -4,7 +4,7 @@
 #include "heap.hpp"
 
 template <typename l, typename v>
-Heap<l, v>::Nodo::Nodo(l llave, v valor) : _llave(llave), _valor(valor) {};
+Heap<l, v>::Nodo::Nodo(l llave, v valor) : _llave(llave), _valor(valor){};
 
 template <typename l, typename v>
 typename Heap<l, v>::Nodo* Heap<l, v>::agregarPar(l llave, v valor) {
@@ -36,7 +36,7 @@ void Heap<l, v>::intercambiar(unsigned int i, unsigned int j) {
 }
 
 template <typename l, typename v>
-void Heap<l,v>::subir(unsigned int indice) {
+void Heap<l, v>::subir(unsigned int indice) {
     while (indice > 0) {
         unsigned int indice_padre = (indice - 1) / 2;
 
@@ -50,7 +50,7 @@ void Heap<l,v>::subir(unsigned int indice) {
 }
 
 template <typename l, typename v>
-void Heap<l,v>::bajar(unsigned int indice) {
+void Heap<l, v>::bajar(unsigned int indice) {
     unsigned int n = _heap.size();
     Nodo* actual = _heap[indice];
 
@@ -94,10 +94,8 @@ void Heap<l,v>::bajar(unsigned int indice) {
     }
 }
 
-
 template <typename l, typename v>
-v Heap<l,v>::extraerMinimo() {
-}
+v Heap<l, v>::extraerMinimo() {}
 
 Par* Heap::ExtraerMinimo() {
     Par* minimo = &pares[0];
@@ -108,10 +106,6 @@ Par* Heap::ExtraerMinimo() {
 }
 
 template <typename l, typename v>
-void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {
+void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {}
 
-}
-
-
-template class Heap<double, int> ;
-
+template class Heap<double, int>;

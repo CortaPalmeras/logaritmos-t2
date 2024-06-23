@@ -257,4 +257,3 @@ void ColaFibonacci<l, v>::Nodo::anadirHijo(Nodo* nuevo_hijo) {
 }
 
 template class ColaFibonacci<double, unsigned int>;
-

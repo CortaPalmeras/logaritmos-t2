@@ -6,7 +6,7 @@
 template <typename llave_t, typename valor_t>
 class Heap {
 public:
-    class Nodo ;
+    class Nodo;
 
     Heap();
 

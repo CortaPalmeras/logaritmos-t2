@@ -81,4 +81,3 @@ void cola_fibonacci_test() {
 
     std::cout << "\033[32m" << "Pasados" << "\033[0m" << std::endl;
 }
-

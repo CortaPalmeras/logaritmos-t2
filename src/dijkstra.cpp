@@ -92,4 +92,3 @@ Grafo crear_grafo(unsigned int i, unsigned int j) {
 
     return grafo;
 }
-
