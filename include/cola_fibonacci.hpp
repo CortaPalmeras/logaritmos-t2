@@ -28,7 +28,7 @@ public:
 
 private:
     Nodo* _minimo;
-    long _tamano;
+    unsigned int _tamano;
 
     // mueve un nodo a la raiz del heap, asume que el input no es una raiz,
     // checkear antes de llamar o va a tirar segfault :D

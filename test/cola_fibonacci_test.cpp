@@ -7,8 +7,8 @@
 
 #include "cola_fibonacci.hpp"
 
-bool comparar_nodo(ColaFibonacci<double, int>::Nodo* a,
-                   ColaFibonacci<double, int>::Nodo* b) {
+bool comparar_nodo(ColaFibonacci<double, unsigned int>::Nodo* a,
+                   ColaFibonacci<double, unsigned int>::Nodo* b) {
     return a->llave() < b->llave();
 }
 
@@ -17,16 +17,19 @@ void cola_fibonacci_test() {
 
     std::default_random_engine rng(56);
     std::uniform_real_distribution<double> dist_llave(-10, 10);
-    std::uniform_int_distribution<int> dist_valor(-10, 10);
+    std::uniform_int_distribution<unsigned int> dist_valor(0, 10);
     std::uniform_real_distribution<double> dist_decimal(0, 1);
 
-    ColaFibonacci<double, int> cola;
-    std::vector<ColaFibonacci<double, int>::Nodo*> nodos;
-    std::vector<std::pair<double, int>> comparacion;
+    ColaFibonacci<double, unsigned int> cola;
+    std::vector<ColaFibonacci<double, unsigned int>::Nodo*> nodos;
+    std::vector<std::pair<double, unsigned int>> comparacion;
+    nodos.reserve(10000);
+    comparacion.reserve(10000);
 
     for (unsigned int i = 0; i < 10000; i++) {
         double llave = dist_llave(rng);
-        int valor = dist_valor(rng);
+        unsigned int valor = dist_valor(rng);
+
         nodos.push_back(cola.agregarPar(llave, valor));
         comparacion.emplace_back(llave, valor);
     }
@@ -34,6 +37,7 @@ void cola_fibonacci_test() {
     for (unsigned int i = 0; i < nodos.size(); i += 5) {
         double nueva_llave =
             dist_decimal(rng) * (nodos[i]->llave() - dist_llave.a()) + dist_llave.a();
+
         cola.reducirLlave(nodos[i], nueva_llave);
         comparacion[i].first = nueva_llave;
     }
@@ -54,7 +58,7 @@ void cola_fibonacci_test() {
 
     for (unsigned int i = 0; i < comparacion.size(); i += 4) {
         double llave = dist_llave(rng);
-        int valor = dist_valor(rng);
+        unsigned int valor = dist_valor(rng);
         nodos.push_back(cola.agregarPar(llave, valor));
         comparacion.emplace_back(llave, valor);
 

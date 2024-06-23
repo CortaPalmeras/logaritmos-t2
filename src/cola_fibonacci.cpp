@@ -188,10 +188,6 @@ void ColaFibonacci<l, v>::consolidar() {
         siguiente = iter->_hermano_d;
     }
 
-    // El error está aqui
-    // si todos los nodos tienen el mismo peso
-    // se copia el minimo
-
     _minimo->_hermano_i = _minimo;
     _minimo->_hermano_d = _minimo;
     lista_auxiliar[_minimo->_orden] = nullptr;
@@ -260,5 +256,5 @@ void ColaFibonacci<l, v>::Nodo::anadirHijo(Nodo* nuevo_hijo) {
     _orden++;
 }
 
-template class ColaFibonacci<double, int>;
+template class ColaFibonacci<double, unsigned int>;
 

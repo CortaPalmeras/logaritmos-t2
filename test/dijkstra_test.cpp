@@ -1,15 +1,14 @@
 
 #include <cassert>
 #include <iostream>
+#include <queue>
 #include <vector>
 
 #include "dijkstra.hpp"
 
 using std::vector;
 
-void dijkstra_test() {
-    std::cout << "Tests para dijkstra con cola de fibonacci: ";
-
+void test_valores_predefinidos() {
     Grafo grafo(11);
 
     unir_nodos(grafo, 0, 1, 6);
@@ -39,7 +38,7 @@ void dijkstra_test() {
 
     unir_nodos(grafo, 8, 9, 5);
 
-    int raiz = 3;
+    unsigned int raiz = 3;
     vector<int> previo;
     vector<double> distancias;
 
@@ -50,6 +49,57 @@ void dijkstra_test() {
 
     assert(previo == previo_esperado);
     assert(distancias == distancias_esperado);
+}
+
+void test_valores_aleatorios() {
+    Grafo grafo = crear_grafo(10, 18);
+
+    unsigned int raiz = 0;
+    vector<int> previo;
+    vector<double> distancias;
+
+    dijkstra_fibonacci(raiz, grafo, previo, distancias);
+
+    vector<bool> validos(previo.size(), false);
+
+    std::queue<int> validacion;
+
+    for (unsigned int i = 1; i < previo.size(); i++) {
+        validacion.push(i);
+    }
+
+    assert(previo[0] == -1);
+    validos[0] = true;
+
+    long iteraciones = 0;
+    long limite = previo.size() * previo.size();
+
+    while (!validacion.empty() && iteraciones < limite) {
+        int item = validacion.front();
+        validacion.pop();
+
+        if (validos[previo[item]]) {
+            validos[item] = true;
+        } else {
+            validacion.push(item);
+        }
+
+        iteraciones++;
+    }
+
+    assert(iteraciones != limite);
+
+    for (unsigned int i = 0; i < validos.size(); i++) {
+        assert(validos[i]);
+    }
+}
+
+void dijkstra_test() {
+    std::cout << "Tests para dijkstra con cola de fibonacci: ";
+
+    test_valores_predefinidos();
+    test_valores_aleatorios();
 
     std::cout << "\033[32m" << "Pasados" << "\033[0m" << std::endl;
 }
+
