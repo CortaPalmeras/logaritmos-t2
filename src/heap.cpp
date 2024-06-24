@@ -117,7 +117,9 @@ v Heap<l, v>::extraerMinimo() {
     delete _heap[_heap.size() - 1];
     _heap.erase(_heap.end() - 1);
 
-    bajar(0);
+    if (!_heap.empty()) {
+        bajar(0);
+    }
     return ret;
 }
 
