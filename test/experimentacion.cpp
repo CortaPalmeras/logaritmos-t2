@@ -33,7 +33,7 @@ int main(void) {
                 distancias.clear();
 
                 ini = chrono::high_resolution_clock::now();
-                /*dijkstra_heap(0, grafo, previo, distancias);*/
+                dijkstra<ColaFibonacci<double, unsigned int>>(0, grafo, previo, distancias);
                 fin = std::chrono::high_resolution_clock::now();
 
                 dif = fin - ini;
