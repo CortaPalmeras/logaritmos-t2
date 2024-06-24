@@ -24,7 +24,7 @@ typename ColaFibonacci<l, v>::Nodo* ColaFibonacci<l, v>::agregarPar(l llave, v v
         if (llave < _minimo->_llave) {
             _minimo = nuevo_nodo;
         }
-
+  
     } else {
         _minimo = nuevo_nodo;
     }
@@ -42,10 +42,10 @@ void ColaFibonacci<l, v>::reducirLlave(Nodo* nodo, l nueva_llave) {
 
     if (nodo->_padre != nullptr && nueva_llave < nodo->_padre->_llave) {
         moverRaiz(nodo);
+    }
 
-        if (nueva_llave < _minimo->_llave) {
-            _minimo = nodo;
-        }
+    if (nueva_llave < _minimo->_llave) {
+        _minimo = nodo;
     }
 }
 
@@ -64,9 +64,7 @@ void ColaFibonacci<l, v>::moverRaiz(Nodo* nodo) {
 
     } else {
         antiguo_padre->_hijo = nullptr;
-    }
-
-    Nodo* nuevo_hermano_d = _minimo->_hermano_d;
+    } Nodo* nuevo_hermano_d = _minimo->_hermano_d;
 
     // se añaden los nuevos hermanos al nodo
     nodo->_hermano_d = nuevo_hermano_d;
@@ -257,3 +255,4 @@ void ColaFibonacci<l, v>::Nodo::anadirHijo(Nodo* nuevo_hijo) {
 }
 
 template class ColaFibonacci<double, unsigned int>;
+

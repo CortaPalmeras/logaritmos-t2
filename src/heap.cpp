@@ -4,13 +4,32 @@
 #include "heap.hpp"
 
 template <typename l, typename v>
-Heap<l, v>::Nodo::Nodo(l llave, v valor) : _llave(llave), _valor(valor){};
+Heap<l, v>::Nodo::Nodo(l llave, v valor, unsigned int pos) : _llave(llave), _valor(valor), _pos(pos){};
+
+template <typename l, typename v>
+l Heap<l, v>::Nodo::llave() {
+    return _llave;
+};
+
+template <typename l, typename v>
+v Heap<l, v>::Nodo::valor() {
+    return _valor;
+};
+
+template <typename l, typename v>
+Heap<l, v>::Heap() : _heap() {}
+
+template <typename l, typename v>
+bool Heap<l, v>::vacio() const {
+    return _heap.empty();
+}
 
 template <typename l, typename v>
 typename Heap<l, v>::Nodo* Heap<l, v>::agregarPar(l llave, v valor) {
-    Nodo* nodo = new Nodo(llave, valor);
+    unsigned int pos = _heap.size();
+    Nodo* nodo = new Nodo(llave, valor, pos);
     _heap.push_back(nodo);
-    subir(_heap.size() - 1);
+    subir(pos);
     return nodo;
 }
 
@@ -52,10 +71,10 @@ void Heap<l, v>::subir(unsigned int indice) {
 template <typename l, typename v>
 void Heap<l, v>::bajar(unsigned int indice) {
     unsigned int n = _heap.size();
-    Nodo* actual = _heap[indice];
+    Nodo* nodo = _heap[indice];
 
     while (true) {
-        unsigned int ind_hijo_i = 2 * indice + 1;
+        unsigned int ind_hijo_i = 2 * nodo->_pos + 1;
         unsigned int ind_hijo_d = ind_hijo_i + 1;
 
         if (ind_hijo_d < n) {
@@ -69,10 +88,8 @@ void Heap<l, v>::bajar(unsigned int indice) {
 
             Nodo* hijo_menor = _heap[ind_hijo_menor];
 
-            if (actual->_llave > hijo_menor->_llave) {
-                intercambiar(indice, ind_hijo_menor);
-                indice = ind_hijo_menor;
-                actual = hijo_menor;
+            if (nodo->_llave > hijo_menor->_llave) {
+                intercambiar(nodo->_pos, ind_hijo_menor);
             } else {
                 break;
             }
@@ -80,10 +97,8 @@ void Heap<l, v>::bajar(unsigned int indice) {
         } else if (ind_hijo_i < n) {
             Nodo* hijo_i = _heap[ind_hijo_i];
 
-            if (actual->_llave > hijo_i->_llave) {
-                intercambiar(indice, ind_hijo_i);
-                indice = ind_hijo_i;
-                actual = hijo_i;
+            if (nodo->_llave > hijo_i->_llave) {
+                intercambiar(nodo->_pos, ind_hijo_i);
             } else {
                 break;
             }
@@ -96,10 +111,12 @@ void Heap<l, v>::bajar(unsigned int indice) {
 
 template <typename l, typename v>
 v Heap<l, v>::extraerMinimo() {
-    v ret = heap[0]->_valor;
-    delete heap[0];
-    _heap[0] = _heap[_heap.size() - 1];
+    v ret = _heap[0]->_valor;
+    intercambiar(0, _heap.size() - 1);
+
+    delete _heap[_heap.size() - 1];
     _heap.erase(_heap.end() - 1);
+
     bajar(0);
     return ret;
 }
@@ -107,7 +124,8 @@ v Heap<l, v>::extraerMinimo() {
 template <typename l, typename v>
 void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {
     nodo->_llave = llave;
-    bajar(nodo->_pos);
+    subir(nodo->_pos);
 }
 
-template class Heap<double, int>;
+template class Heap<double, unsigned int>;
+

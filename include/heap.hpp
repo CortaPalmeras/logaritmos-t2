@@ -7,7 +7,6 @@ template <typename llave_t, typename valor_t>
 class Heap {
 public:
     class Nodo;
-
     Heap();
 
     // Agrega un valor con una cierta prioridad al heap
@@ -48,7 +47,7 @@ public:
 private:
     friend Heap;
 
-    Nodo(llave_t llave, valor_t valor);
+    Nodo(llave_t llave, valor_t valor, unsigned int pos);
     Nodo() = delete;
 
     llave_t _llave;

@@ -1,19 +1,20 @@
 
 add_executable(
-    tarea_test
-    tarea_test.cpp
-    cola_fibonacci_test.cpp
-    heap_test.cpp
-    dijkstra_test.cpp
+    tests_funcionamiento
+    tests_funcionamiento.cpp
 )
 
 target_link_libraries(
-    tarea_test
+    tests_funcionamiento
     tarea
 )
 
-target_include_directories(
-    tarea_test
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
+add_executable(
+    experimentacion
+    experimentacion.cpp
 )
 
+target_link_libraries(
+    experimentacion
+    tarea
+)

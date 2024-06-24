@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include "dijkstra.hpp"
+#include "cola_fibonacci.hpp"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main(void) {
                 vector<double> distancias;
 
                 auto ini = chrono::high_resolution_clock::now();
-                dijkstra_fibonacci(0, grafo, previo, distancias);
+                dijkstra<ColaFibonacci<double, unsigned int>>(0, grafo, previo, distancias);
                 auto fin = std::chrono::high_resolution_clock::now();
 
                 std::chrono::duration<double> dif = fin - ini;
