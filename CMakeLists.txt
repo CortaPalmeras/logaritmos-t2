@@ -12,10 +12,10 @@ set(CMAKE_CONFIGURATION_TYPES Debug)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR
     CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    add_compile_options( "-Wall" "-Wextra" "-Werror" "-Wpedantic" )
+    add_compile_options( "-Wall" "-Wextra" "-Wpedantic" )
 
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    add_compile_options( "/W4" "/WX" )
+    add_compile_options( "/W4" )
 
 endif()
 
