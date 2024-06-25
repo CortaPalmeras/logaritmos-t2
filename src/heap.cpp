@@ -4,7 +4,8 @@
 #include "heap.hpp"
 
 template <typename l, typename v>
-Heap<l, v>::Nodo::Nodo(l llave, v valor, unsigned int pos) : _llave(llave), _valor(valor), _pos(pos){};
+Heap<l, v>::Nodo::Nodo(l llave, v valor, unsigned int pos)
+    : _llave(llave), _valor(valor), _pos(pos){};
 
 template <typename l, typename v>
 l Heap<l, v>::Nodo::llave() {
@@ -130,4 +131,3 @@ void Heap<l, v>::reducirLlave(Nodo* nodo, l llave) {
 }
 
 template class Heap<double, unsigned int>;
-

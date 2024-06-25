@@ -1,9 +1,9 @@
 
-#include <fstream>
 #include <chrono>
+#include <fstream>
 
-#include "dijkstra.hpp"
 #include "cola_fibonacci.hpp"
+#include "dijkstra.hpp"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ int main(void) {
 
     archivo << "cantidad_nodos,cantidad_aristas,t_con_fib,t_con_heap" << endl;
 
-    for (int i = 10; i <= 20; i++) {
+    for (int i = 10; i <= 16; i++) {
         for (int j = 16; j <= 22; j++) {
             for (int n = 0; n < 50; n++) {
                 Grafo grafo = crear_grafo(i, j);
@@ -28,7 +28,7 @@ int main(void) {
 
                 std::chrono::duration<double> dif = fin - ini;
                 archivo << dif.count() << ',';
-                
+
                 previo.clear();
                 distancias.clear();
 

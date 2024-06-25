@@ -1,18 +1,17 @@
 
 #include <algorithm>
-#include <ostream>
-#include <random>
-#include <iostream>
-#include <vector>
-#include <queue>
 #include <cassert>
+#include <iostream>
+#include <ostream>
+#include <queue>
+#include <random>
+#include <vector>
 
-#include "dijkstra.hpp"
 #include "cola_fibonacci.hpp"
+#include "dijkstra.hpp"
 #include "heap.hpp"
 
 using namespace std;
-
 
 template <typename Cola>
 bool comparar_nodo(typename Cola::Nodo* a, typename Cola::Nodo* b) {
@@ -41,7 +40,7 @@ void test_cola_definido() {
     cola.reducirLlave(nodos[3], 2);
 
     unsigned int valor2o3 = cola.extraerMinimo();
-    
+
     assert(valor2o3 == 2 || valor2o3 == 3);
 
     if (valor2o3 == 2) {
@@ -80,7 +79,8 @@ void test_cola_definido() {
         no_extraido1++;
     }
 
-    unsigned int no_extraido2 = no_extraido1 + 1;;
+    unsigned int no_extraido2 = no_extraido1 + 1;
+    ;
     while (extraido[no_extraido2]) {
         no_extraido2++;
     }
@@ -105,7 +105,8 @@ void test_cola_definido() {
         no_extraido1++;
     }
 
-    no_extraido2 = no_extraido1 + 1;;
+    no_extraido2 = no_extraido1 + 1;
+    ;
     while (extraido[no_extraido2]) {
         no_extraido2++;
     }
@@ -312,7 +313,6 @@ void test_dijkstra_aleatorios() {
     }
 }
 
-
 int main(void) {
     cout << "Test para Cola de Fibonacci: " << flush;
     test_cola_definido<ColaFibonacci<double, unsigned int>>();
@@ -336,4 +336,3 @@ int main(void) {
 
     return 0;
 }
-

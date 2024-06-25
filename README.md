@@ -84,6 +84,24 @@ cmake --build . --config Debug
 .\test\Debug\tests_funcionamiento.exe
 ```
 
+### Generar gráficos
+
+En la raiz de la tarea se encuentra un script de python llamado `generar_graficos.py`
+que genera los graficos del informe y los deja en una carpeta llamada `out`, los datos
+los toma de un archivo llamado `dijkstra.csv` que tambien está en la raiz del proyecto
+y contiene el set de datos utilizado para el informe.
+
+Para ejecutar el script se deben instalar las dependencias y luego se puede correr 
+directamente usando python:
+```bash
+pip install -r requirements.txt
+python3 generar_graficos.py
+```
+
+Para que el script utilice el archivo `dijkstra.csv` generado localmente con el programa
+`experimentacion` o `experimentacion.exe` el achivo se debe mover al directorio raiz del
+proyecto.
+
 ### Layout de la tarea:
 
 ```
