@@ -5,22 +5,22 @@ Para generar los comandos de compilación para distintas plataformas
 utilziamos CMake, la tarea fue probada en Debian usando el compilador
 g++ y en Windows usando MSVC.
 
-#### Requisitos para compilar la tarea:
+### Requisitos para compilar la tarea:
 
-##### Linux:
+#### Linux:
 
 - CMake
 - g++, tambien sirve clang++
 - GNU Make
 
-##### Windows:
+#### Windows:
 
 - CMake
 - Visual Studio (el IDE) o Visual Studio Build Tools
 
-#### Instrucciones de ejecución:
+### Instrucciones de ejecución:
 
-##### Linux:
+#### Linux:
 
 - Crear un directorio llamado "build"
 ```bash
@@ -43,7 +43,7 @@ make
 ./test/experimentacion
 ```
 
-- Tambier habrá un archivo llamado `tests_funcionamiento` que contine los tests
+- Tambien habrá un archivo llamado `tests_funcionamiento` que contine los tests
 no relacionados con la experimentacion, estos utilizan el macro `assert` por lo que
 no sirven con opciones de optimizacion, si se desea ejecutar estos tests se tiene
 que recompilar:
@@ -53,7 +53,7 @@ make
 ./test/tests_funcionamiento
 ```
 
-##### Windows
+#### Windows
 
 Es necesario utilizar "Developer PowerShell for VS" para que CMake pueda
 encontrar el compilador automaticamente.
@@ -75,8 +75,8 @@ cmake --build . --config Release
 .\test\Release\experimentacion.exe
 ```
 
-- Tambier habrá un archivo llamado `tests_funcionamiento` que contine los tests
-no relacionados con la experimentacion, estos utilizan el macro `assert` por lo que
+- Tambien habrá un archivo llamado `tests_funcionamiento.exe` que contine los tests
+no relacionados con la experimentacion, estos utilizan el macro `assert`, por lo que
 no sirven con opciones de optimizacion, si se desea ejecutar estos tests se tiene
 que recompilar:
 ```powershell
@@ -84,7 +84,7 @@ cmake --build . --config Debug
 .\test\Debug\tests_funcionamiento.exe
 ```
 
-#### Layout de la tarea:
+### Layout de la tarea:
 
 ```
 .
