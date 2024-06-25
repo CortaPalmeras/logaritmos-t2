@@ -1,38 +1,46 @@
 
 ## Tarea 1 de Geometría Computacional
 
-#### Requisitos para compilar y ejecutar la tarea:
+Para generar los comandos de compilación para distintas plataformas
+utilziamos CMake, la tarea fue probada en Debian usando el compilador
+g++ y en Windows usando MSVC.
 
-- Un compilador de C++, puede ser `g++` o `clang++`.
+#### Requisitos para compilar la tarea:
+
+##### Linux:
+
+- `cmake`
+- `g++`
 - `make` para ejecutar los comandos.
-- Alguna distribución de Linux, la tarea fue probada en Debian.
+
+##### Windows:
+
+- `cmake`
+- Visual Studio (el IDE) o Visual Studio Build Tools
 
 #### Instrucciones de ejecución:
 
-Para ejecutar la tarea solo es necesario ejecutar `make` en el directorio raiz
-de la tarea, por defecto la compilación se debería realizar con g++, sobreescribir
-este comportamiento se puede la opción `CXX` en el comando, por ejemplo: `make CXX=clang++`
-va a hacer que se compile con `clang++`, es necesario que el compilador que se 
-utilice acepte las mismas flags especificadas en el archivo makefile.
+##### Linux:
 
-También se puede compilar y ejecutar un test expecifico con 
-los comandos: `make sexton_swinbank`, `make minmax`,
-`make ciaccia_patella` y `make busqueda`.
+- Crear un directorio llamado "build"
+```bash
+mkdir build
+cd build
+```
+
+- Crear el cache de CMake
+```bash
+cmake ..
+```
+- Compilar con Make
+```bash
+make
+```
+- Ejecutar la tarea
+```bash
+./test  0
+```
+
 
 #### Layout de la tarea:
 
-```
-.
-├── bin
-├── compile_flags.txt
-├── docs
-│   └── Tarea_2_DiseA_o_y_AnA_lisis_de_Algoritmos.pdf
-├── include
-│   └── heap.hpp
-├── makefile
-├── README.md
-├── src
-│   └── heap.cpp
-└── test
-    └── test_heap.cpp
-```
