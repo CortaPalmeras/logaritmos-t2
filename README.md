@@ -9,13 +9,13 @@ g++ y en Windows usando MSVC.
 
 ##### Linux:
 
-- `cmake`
-- `g++`
-- `make` para ejecutar los comandos.
+- CMake
+- g++, tambien sirve clang++
+- GNU Make
 
 ##### Windows:
 
-- `cmake`
+- CMake
 - Visual Studio (el IDE) o Visual Studio Build Tools
 
 #### Instrucciones de ejecución:
@@ -30,15 +30,17 @@ cd build
 
 - Crear el cache de CMake
 ```bash
-cmake ..
+cmake -D CMAKE_BUILD_TYPE=Release ..
 ```
+
 - Compilar con Make
 ```bash
 make
 ```
+
 - Ejecutar la tarea
 ```bash
-./test  0
+./test 
 ```
 
 

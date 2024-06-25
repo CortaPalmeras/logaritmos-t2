@@ -324,6 +324,8 @@ int main(void) {
     test_cola_aleatorio<Heap<double, unsigned int>>();
     cout << "Pasado" << endl;
 
+    assert(1 == 2);
+
     cout << "Test algoritmo de Dijkstra con cola de Fibonacci: " << flush;
     test_dijkstra_aleatorios<ColaFibonacci<double, unsigned int>>();
     test_dijkstra_predefinidos<ColaFibonacci<double, unsigned int>>();
