@@ -1,5 +1,5 @@
 
-## Tarea 1 de Geometría Computacional
+## Tarea 2 Diseño y Análisis de Algoritmos
 
 Para generar los comandos de compilación para distintas plataformas
 utilziamos CMake, la tarea fue probada en Debian usando el compilador
