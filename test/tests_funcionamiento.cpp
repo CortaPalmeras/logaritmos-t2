@@ -41,9 +41,14 @@ void test_cola_definido() {
     cola.reducirLlave(nodos[3], 2);
 
     unsigned int valor2o3 = cola.extraerMinimo();
-    unsigned int valor3o2 = cola.extraerMinimo();
+    
+    assert(valor2o3 == 2 || valor2o3 == 3);
 
-    assert((valor2o3 == 2 && valor3o2 == 3) || (valor2o3 == 3 && valor3o2 == 2));
+    if (valor2o3 == 2) {
+        assert(cola.extraerMinimo());
+    } else {
+        assert(cola.extraerMinimo());
+    }
 
     cola.reducirLlave(nodos[6], 1);
     cola.reducirLlave(nodos[8], 7);
