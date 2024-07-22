@@ -109,6 +109,7 @@ proyecto.
 ├── CMakeLists.txt
 ├── crear_grafico.py
 ├── dijkstra.csv
+├── requirements.txt
 ├── README.md
 ├── include                 // Headers de la tarea
 │   ├── cola_fibonacci.hpp
